@@ -1,0 +1,43 @@
+{
+  "synthetic_data_notice": "本模块数据为显式合成数据，仅用于验证多商家、多品类、多批次、多周转率条件下的代管仓模型，不代表银犁企业实际业务量。",
+  "data_scale": {
+    "merchants": 12,
+    "categories": 8,
+    "batches": 108,
+    "batch_pallets": 1287,
+    "orders": 108
+  },
+  "strategies": {
+    "random": {
+      "picked_pieces": 396,
+      "orders": 108,
+      "average_retrieval_seconds": 148.53,
+      "average_path_distance_m": 72.46,
+      "flip_count": 4,
+      "flip_rate_pct": 1.01,
+      "fifo_compliance_pct": 100.0,
+      "average_merchant_rack_span": 71.92
+    },
+    "optimized": {
+      "picked_pieces": 396,
+      "orders": 108,
+      "average_retrieval_seconds": 147.04,
+      "average_path_distance_m": 75.79,
+      "flip_count": 0,
+      "flip_rate_pct": 0.0,
+      "fifo_compliance_pct": 100.0,
+      "average_merchant_rack_span": 53.42
+    }
+  },
+  "traceability_chain": [
+    "merchant_id",
+    "category_id",
+    "batch_id",
+    "slot_id",
+    "order_id"
+  ],
+  "outputs": {
+    "allocation_csv": "managed_allocation.csv",
+    "picking_csv": "managed_picking.csv"
+  }
+}

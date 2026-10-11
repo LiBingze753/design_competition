@@ -1,0 +1,129 @@
+{
+  "data_scope": {
+    "orders": 33,
+    "simulation_days": 3,
+    "warehouse_tasks": 760
+  },
+  "modes": {
+    "manual": {
+      "vehicles": 33,
+      "orders": 33,
+      "average_wait_min": 113.14,
+      "max_wait_min": 147.18,
+      "average_cargo_wait_min": 113.14,
+      "average_eta_abs_error_min": 11.58,
+      "average_appointment_abs_error_min": 24.61,
+      "appointment_compliance_pct": 30.3,
+      "rescheduled_vehicles": 0,
+      "late_vehicles": 0,
+      "dock_utilisation_pct": 5.4
+    },
+    "integrated": {
+      "vehicles": 33,
+      "orders": 33,
+      "average_wait_min": 0.0,
+      "max_wait_min": 0.0,
+      "average_cargo_wait_min": 0.0,
+      "average_eta_abs_error_min": 6.38,
+      "average_appointment_abs_error_min": 12.76,
+      "appointment_compliance_pct": 63.6,
+      "rescheduled_vehicles": 17,
+      "late_vehicles": 0,
+      "dock_utilisation_pct": 5.6
+    }
+  },
+  "interfaces": {
+    "architecture": "OMS -> Master WMS -> Master WCS; Master WMS <-> TMS; Customer Portal <-> TMS",
+    "interfaces": [
+      {
+        "interface_id": "IF-01",
+        "source_system": "OMS",
+        "target_system": "Master WMS",
+        "direction": "OMS->WMS",
+        "payload": [
+          "order_id",
+          "merchant_id",
+          "sku_id",
+          "quantity",
+          "due_time"
+        ],
+        "trigger": "订单审核通过"
+      },
+      {
+        "interface_id": "IF-02",
+        "source_system": "Master WMS",
+        "target_system": "TMS",
+        "direction": "WMS->TMS",
+        "payload": [
+          "order_id",
+          "ready_time",
+          "pick_status",
+          "staging_dock",
+          "weight"
+        ],
+        "trigger": "出库任务完成或状态变化"
+      },
+      {
+        "interface_id": "IF-03",
+        "source_system": "Customer Portal",
+        "target_system": "TMS",
+        "direction": "客户->TMS",
+        "payload": [
+          "order_id",
+          "plate_no",
+          "requested_eta",
+          "quantity",
+          "temperature_zone"
+        ],
+        "trigger": "客户提交预约"
+      },
+      {
+        "interface_id": "IF-04",
+        "source_system": "TMS",
+        "target_system": "Master WMS",
+        "direction": "TMS->WMS",
+        "payload": [
+          "order_id",
+          "appointment_time",
+          "prepare_by",
+          "dock_id"
+        ],
+        "trigger": "预约确认或动态改约"
+      },
+      {
+        "interface_id": "IF-05",
+        "source_system": "TMS",
+        "target_system": "Customer Portal",
+        "direction": "TMS->客户",
+        "payload": [
+          "order_id",
+          "appointment_time",
+          "dock_id",
+          "queue_no",
+          "contact"
+        ],
+        "trigger": "月台分配或重排完成"
+      },
+      {
+        "interface_id": "IF-06",
+        "source_system": "Master WCS",
+        "target_system": "Master WMS",
+        "direction": "WCS->WMS",
+        "payload": [
+          "task_id",
+          "device_id",
+          "task_status",
+          "event_time"
+        ],
+        "trigger": "设备任务状态回传"
+      }
+    ]
+  },
+  "prototype_notice": "预约页面为比赛用静态 HTML 原型，未接入真实微信或企业系统。",
+  "outputs": {
+    "vehicles_csv": "integration_vehicles.csv",
+    "state_history_csv": "integration_state_history.csv",
+    "interface_json": "integration_interfaces.json",
+    "portal_html": "appointment_portal.html"
+  }
+}

@@ -1,0 +1,12 @@
+﻿experiment,scenario,parameter_value,required_slots,layout_slots,pilot_area_m2,makespan_min,agv_util_pct,dock_wait_min,late_vehicles
+slot_sizing,基准,7/14/1.15,2037,2400,3000,,,,
+slot_sizing,短在库,5/10/1.15,1455,2400,3000,,,,
+slot_sizing,长在库,9/18/1.15,2619,2400,3000,,,,
+slot_sizing,低峰,7/14/1.00,1771,2400,3000,,,,
+slot_sizing,高峰,7/14/1.30,2303,2400,3000,,,,
+agv_count,4 台 AGV,4,2037,2400,3000,3006.84,8.9,0.0,0
+agv_count,6 台 AGV,6,2037,2400,3000,3006.84,5.9,0.0,0
+agv_count,8 台 AGV,8,2037,2400,3000,3006.84,4.4,0.0,0
+dock_service,1.2 分钟/件,1.2,2037,2400,3000,3024.0,,0.0,0
+dock_service,1.8 分钟/件,1.8,2037,2400,3000,3030.0,,0.0,0
+dock_service,2.4 分钟/件,2.4,2037,2400,3000,3042.0,,0.0,0

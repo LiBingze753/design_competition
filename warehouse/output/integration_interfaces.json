@@ -1,0 +1,87 @@
+{
+  "architecture": "OMS -> Master WMS -> Master WCS; Master WMS <-> TMS; Customer Portal <-> TMS",
+  "interfaces": [
+    {
+      "interface_id": "IF-01",
+      "source_system": "OMS",
+      "target_system": "Master WMS",
+      "direction": "OMS->WMS",
+      "payload": [
+        "order_id",
+        "merchant_id",
+        "sku_id",
+        "quantity",
+        "due_time"
+      ],
+      "trigger": "订单审核通过"
+    },
+    {
+      "interface_id": "IF-02",
+      "source_system": "Master WMS",
+      "target_system": "TMS",
+      "direction": "WMS->TMS",
+      "payload": [
+        "order_id",
+        "ready_time",
+        "pick_status",
+        "staging_dock",
+        "weight"
+      ],
+      "trigger": "出库任务完成或状态变化"
+    },
+    {
+      "interface_id": "IF-03",
+      "source_system": "Customer Portal",
+      "target_system": "TMS",
+      "direction": "客户->TMS",
+      "payload": [
+        "order_id",
+        "plate_no",
+        "requested_eta",
+        "quantity",
+        "temperature_zone"
+      ],
+      "trigger": "客户提交预约"
+    },
+    {
+      "interface_id": "IF-04",
+      "source_system": "TMS",
+      "target_system": "Master WMS",
+      "direction": "TMS->WMS",
+      "payload": [
+        "order_id",
+        "appointment_time",
+        "prepare_by",
+        "dock_id"
+      ],
+      "trigger": "预约确认或动态改约"
+    },
+    {
+      "interface_id": "IF-05",
+      "source_system": "TMS",
+      "target_system": "Customer Portal",
+      "direction": "TMS->客户",
+      "payload": [
+        "order_id",
+        "appointment_time",
+        "dock_id",
+        "queue_no",
+        "contact"
+      ],
+      "trigger": "月台分配或重排完成"
+    },
+    {
+      "interface_id": "IF-06",
+      "source_system": "Master WCS",
+      "target_system": "Master WMS",
+      "direction": "WCS->WMS",
+      "payload": [
+        "task_id",
+        "device_id",
+        "task_status",
+        "event_time"
+      ],
+      "trigger": "设备任务状态回传"
+    }
+  ]
+}

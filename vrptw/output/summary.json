@@ -1,0 +1,60 @@
+{
+  "baseline": {
+    "cost": 7343.6,
+    "small": 8,
+    "medium": 3
+  },
+  "optimised": {
+    "cost": 5344.6,
+    "small": 8,
+    "medium": 2
+  },
+  "saving": 1999.0,
+  "saving_pct": 27.2,
+  "kpi": {
+    "baseline": {
+      "routes": 11,
+      "stops": 60,
+      "load_util_weight_pct": 36.1,
+      "load_util_volume_pct": 17.5,
+      "on_time_pref_pct": 43.3,
+      "on_time_acc_pct": 100.0,
+      "by_family": {
+        "jiang": {
+          "routes": 5,
+          "load_util_pct": 44.1,
+          "on_time_pref_pct": 50.0,
+          "on_time_acc_pct": 100.0
+        },
+        "noodle": {
+          "routes": 6,
+          "load_util_pct": 29.5,
+          "on_time_pref_pct": 36.7,
+          "on_time_acc_pct": 100.0
+        }
+      }
+    },
+    "optimised": {
+      "routes": 10,
+      "stops": 60,
+      "load_util_weight_pct": 48.6,
+      "load_util_volume_pct": 22.0,
+      "on_time_pref_pct": 48.3,
+      "on_time_acc_pct": 100.0,
+      "by_family": {
+        "jiang": {
+          "routes": 5,
+          "load_util_pct": 61.7,
+          "on_time_pref_pct": 40.0,
+          "on_time_acc_pct": 100.0
+        },
+        "noodle": {
+          "routes": 5,
+          "load_util_pct": 35.4,
+          "on_time_pref_pct": 56.7,
+          "on_time_acc_pct": 100.0
+        }
+      }
+    }
+  }
+}

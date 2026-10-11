@@ -1,0 +1,342 @@
+{
+  "case_facts": {
+    "cold_storage_area_m2": 260000,
+    "cold_storage_capacity_t": 600000,
+    "high_temperature_area_m2": 25000,
+    "high_temperature_capacity_t": 15000,
+    "stereoscopic_rack_area_m2": 30000,
+    "stereoscopic_slots": 30000,
+    "open_docks": 252,
+    "closed_docks": 24,
+    "forklifts": 78,
+    "tractors": 20,
+    "t_cars": 129,
+    "three_phase_area_m2": 230000,
+    "three_phase_investment_yuan": 1100000000,
+    "historical_ginger_days": 510,
+    "historical_ginger_pieces": 78000,
+    "historical_ginger_daily_pieces": 150,
+    "historical_ginger_cost_wan": 17.0,
+    "historical_garlic_days": 150,
+    "historical_garlic_pieces": 6300,
+    "historical_garlic_daily_pieces": 40,
+    "historical_garlic_cost_wan": 1.6
+  },
+  "assumptions": {
+    "average_ginger_dwell_days": 7.0,
+    "average_garlic_dwell_days": 14.0,
+    "peak_factor": 1.15,
+    "buffer_ratio": 0.1,
+    "pilot_slot_area_allowance_m2": 1.25,
+    "pilot_docks": 6,
+    "stacker_count": 4,
+    "stacker_horizontal_mps": 2.0,
+    "stacker_vertical_mps": 0.5,
+    "stacker_service_seconds": 25.0,
+    "agv_count": 6,
+    "agv_speed_mps": 1.0,
+    "agv_transfer_seconds": 20.0,
+    "lift_count": 2,
+    "lift_vertical_mps": 0.8,
+    "lift_service_seconds": 12.0,
+    "lift_handoff_seconds": 8.0,
+    "sorter_count": 2,
+    "sorter_seconds_per_piece": 3.0,
+    "sorter_handoff_seconds": 5.0,
+    "worker_teams": 4,
+    "cold_work_limit_min": 120.0,
+    "cold_break_min": 20.0,
+    "worker_task_seconds": 90.0,
+    "dock_service_min_per_piece": 1.8,
+    "appointment_prepare_buffer_min": 15.0,
+    "appointment_deviation_pattern_min": [
+      -12.0,
+      -5.0,
+      0.0,
+      8.0,
+      18.0,
+      30.0
+    ],
+    "appointment_compliance_tolerance_min": 15.0,
+    "dock_wait_target_min": 30.0,
+    "dock_eta_correction_min": 10.0,
+    "picking_seconds_per_piece": 12.0
+  },
+  "sizing": {
+    "required_slots": {
+      "daily_pieces": 190,
+      "weighted_dwell_days": 8.473684210526315,
+      "base_slots": 1609.9999999999998,
+      "peak_slots": 1851.4999999999995,
+      "required_slots": 2037
+    },
+    "layout_slots": 2400,
+    "pilot_area_m2": 3000,
+    "existing_stereoscopic_slots": 30000
+  },
+  "data_quality_checks": [
+    {
+      "name": "daily demand matches Table 2-7",
+      "passed": true
+    },
+    {
+      "name": "pilot layout can cover required peak slots",
+      "passed": true
+    },
+    {
+      "name": "pilot uses less than 15% of the existing stereoscopic slots",
+      "passed": true
+    },
+    {
+      "name": "all dwell and equipment assumptions are positive",
+      "passed": true
+    },
+    {
+      "name": "cold-work limit exceeds one task and break is positive",
+      "passed": true
+    },
+    {
+      "name": "appointment deviation samples are finite",
+      "passed": true
+    }
+  ],
+  "strategies": {
+    "experience": {
+      "picking": {
+        "picked_pieces": 570,
+        "orders": 33,
+        "average_retrieval_seconds": 39.33,
+        "fifo_violation_orders": 33,
+        "fifo_compliance_pct": 0.0,
+        "average_inventory_age_days": 5.86
+      },
+      "equipment": {
+        "work_start_min": 360.0,
+        "work_end_min": 3367.51,
+        "equipment_end_min": 3367.51,
+        "makespan_min": 3007.51,
+        "stacker_utilisation_pct": 4.2,
+        "lift_utilisation_pct": 4.0,
+        "agv_utilisation_pct": 5.6,
+        "sorter_utilisation_pct": 0.5,
+        "cold_breaks": 12,
+        "max_continuous_work_min": 120.0,
+        "average_wait_min": 0.14
+      },
+      "docks": {
+        "average_wait_min": 126.05,
+        "max_wait_min": 191.73,
+        "average_cargo_wait_min": 126.05,
+        "average_eta_abs_error_min": 0.0,
+        "appointment_compliance_pct": 0.0,
+        "late_vehicles": 0,
+        "dock_utilisation_pct": 5.3
+      }
+    },
+    "data_driven": {
+      "picking": {
+        "picked_pieces": 570,
+        "orders": 33,
+        "average_retrieval_seconds": 34.97,
+        "fifo_violation_orders": 0,
+        "fifo_compliance_pct": 100.0,
+        "average_inventory_age_days": 9.87
+      },
+      "equipment": {
+        "work_start_min": 360.0,
+        "work_end_min": 3366.84,
+        "equipment_end_min": 3366.84,
+        "makespan_min": 3006.84,
+        "stacker_utilisation_pct": 4.0,
+        "lift_utilisation_pct": 3.8,
+        "agv_utilisation_pct": 5.9,
+        "sorter_utilisation_pct": 0.5,
+        "cold_breaks": 12,
+        "max_continuous_work_min": 120.0,
+        "average_wait_min": 0.08
+      },
+      "docks": {
+        "average_wait_min": 0.0,
+        "max_wait_min": 0.0,
+        "average_cargo_wait_min": 0.0,
+        "average_eta_abs_error_min": 5.79,
+        "appointment_compliance_pct": 69.7,
+        "late_vehicles": 0,
+        "dock_utilisation_pct": 5.6
+      }
+    }
+  },
+  "managed_warehouse": {
+    "synthetic_data_notice": "本模块数据为显式合成数据，仅用于验证多商家、多品类、多批次、多周转率条件下的代管仓模型，不代表银犁企业实际业务量。",
+    "data_scale": {
+      "merchants": 12,
+      "categories": 8,
+      "batches": 108,
+      "batch_pallets": 1287,
+      "orders": 108
+    },
+    "strategies": {
+      "random": {
+        "picked_pieces": 396,
+        "orders": 108,
+        "average_retrieval_seconds": 148.53,
+        "average_path_distance_m": 72.46,
+        "flip_count": 4,
+        "flip_rate_pct": 1.01,
+        "fifo_compliance_pct": 100.0,
+        "average_merchant_rack_span": 71.92
+      },
+      "optimized": {
+        "picked_pieces": 396,
+        "orders": 108,
+        "average_retrieval_seconds": 147.04,
+        "average_path_distance_m": 75.79,
+        "flip_count": 0,
+        "flip_rate_pct": 0.0,
+        "fifo_compliance_pct": 100.0,
+        "average_merchant_rack_span": 53.42
+      }
+    },
+    "traceability_chain": [
+      "merchant_id",
+      "category_id",
+      "batch_id",
+      "slot_id",
+      "order_id"
+    ],
+    "outputs": {
+      "allocation_csv": "managed_allocation.csv",
+      "picking_csv": "managed_picking.csv"
+    }
+  },
+  "warehouse_delivery_integration": {
+    "data_scope": {
+      "orders": 33,
+      "simulation_days": 3,
+      "warehouse_tasks": 760
+    },
+    "modes": {
+      "manual": {
+        "vehicles": 33,
+        "orders": 33,
+        "average_wait_min": 113.14,
+        "max_wait_min": 147.18,
+        "average_cargo_wait_min": 113.14,
+        "average_eta_abs_error_min": 11.58,
+        "average_appointment_abs_error_min": 24.61,
+        "appointment_compliance_pct": 30.3,
+        "rescheduled_vehicles": 0,
+        "late_vehicles": 0,
+        "dock_utilisation_pct": 5.4
+      },
+      "integrated": {
+        "vehicles": 33,
+        "orders": 33,
+        "average_wait_min": 0.0,
+        "max_wait_min": 0.0,
+        "average_cargo_wait_min": 0.0,
+        "average_eta_abs_error_min": 6.38,
+        "average_appointment_abs_error_min": 12.76,
+        "appointment_compliance_pct": 63.6,
+        "rescheduled_vehicles": 17,
+        "late_vehicles": 0,
+        "dock_utilisation_pct": 5.6
+      }
+    },
+    "interfaces": {
+      "architecture": "OMS -> Master WMS -> Master WCS; Master WMS <-> TMS; Customer Portal <-> TMS",
+      "interfaces": [
+        {
+          "interface_id": "IF-01",
+          "source_system": "OMS",
+          "target_system": "Master WMS",
+          "direction": "OMS->WMS",
+          "payload": [
+            "order_id",
+            "merchant_id",
+            "sku_id",
+            "quantity",
+            "due_time"
+          ],
+          "trigger": "订单审核通过"
+        },
+        {
+          "interface_id": "IF-02",
+          "source_system": "Master WMS",
+          "target_system": "TMS",
+          "direction": "WMS->TMS",
+          "payload": [
+            "order_id",
+            "ready_time",
+            "pick_status",
+            "staging_dock",
+            "weight"
+          ],
+          "trigger": "出库任务完成或状态变化"
+        },
+        {
+          "interface_id": "IF-03",
+          "source_system": "Customer Portal",
+          "target_system": "TMS",
+          "direction": "客户->TMS",
+          "payload": [
+            "order_id",
+            "plate_no",
+            "requested_eta",
+            "quantity",
+            "temperature_zone"
+          ],
+          "trigger": "客户提交预约"
+        },
+        {
+          "interface_id": "IF-04",
+          "source_system": "TMS",
+          "target_system": "Master WMS",
+          "direction": "TMS->WMS",
+          "payload": [
+            "order_id",
+            "appointment_time",
+            "prepare_by",
+            "dock_id"
+          ],
+          "trigger": "预约确认或动态改约"
+        },
+        {
+          "interface_id": "IF-05",
+          "source_system": "TMS",
+          "target_system": "Customer Portal",
+          "direction": "TMS->客户",
+          "payload": [
+            "order_id",
+            "appointment_time",
+            "dock_id",
+            "queue_no",
+            "contact"
+          ],
+          "trigger": "月台分配或重排完成"
+        },
+        {
+          "interface_id": "IF-06",
+          "source_system": "Master WCS",
+          "target_system": "Master WMS",
+          "direction": "WCS->WMS",
+          "payload": [
+            "task_id",
+            "device_id",
+            "task_status",
+            "event_time"
+          ],
+          "trigger": "设备任务状态回传"
+        }
+      ]
+    },
+    "prototype_notice": "预约页面为比赛用静态 HTML 原型，未接入真实微信或企业系统。",
+    "outputs": {
+      "vehicles_csv": "integration_vehicles.csv",
+      "state_history_csv": "integration_state_history.csv",
+      "interface_json": "integration_interfaces.json",
+      "portal_html": "appointment_portal.html"
+    }
+  },
+  "ai_assistance_notice": "代码、图表和文档由 AI 辅助生成；案例事实与计划假设已分栏标注。"
+}
